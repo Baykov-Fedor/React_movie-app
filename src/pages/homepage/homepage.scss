@@ -1,6 +1,12 @@
 .main-page {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   padding: 2rem 20%;
+  &--movies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  &--controls {
+    display: flex;
+    justify-content: space-between;
+  }
 }

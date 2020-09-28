@@ -13,25 +13,13 @@
   }
 
   &--nav-bar {
-    width: 40%;
+    width: 30%;
     &--menu {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: space-around;
-      &--item {
-        padding: 10px;
-        border: 1px solid #708ed2;
-        border-radius: 20px;
-        color: #708ed2;
-
-        &:hover {
-          background-color: #708ed2;
-          color: #ebe5e2;
-          cursor: pointer;
-        }
-      }
+      justify-content: space-between;
     }
   }
 }

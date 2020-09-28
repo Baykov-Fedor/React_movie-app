@@ -4,9 +4,10 @@ import "./App.css";
 import Header from "./components/header/header.component";
 import HomePage from "./pages/homepage/homepage";
 import AboutPage from "./pages/aboutpage/aboutpage";
-import ContactPage from "./pages/contactpage/contactpage";
 
-const APIURL =
+const API_releaseDate =
+  "https://api.themoviedb.org/3/discover/movie?sort_by=primary_release_date.desc&vote_count.gte=4&api_key=04c35731a5ee918f014970082a0088b1&page=";
+const API_popularity =
   "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=";
 const SEARCHAPI =
   "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
@@ -17,6 +18,7 @@ class App extends React.Component {
 
     this.state = {
       data: [],
+      pageNum: 1,
     };
     this.searchMovies = this.searchMovies.bind(this);
     this.getMovies = this.getMovies.bind(this);
@@ -32,34 +34,52 @@ class App extends React.Component {
     });
   }
 
-  async getMovies(pageNum) {
-    let movieData = await fetch(APIURL + pageNum)
+  async getMovies(url, pageNum) {
+    let movieData = await fetch(url + pageNum)
       .then((res) => res.json())
       .then((res) => res.results);
     console.log(movieData);
     this.setState({
       data: movieData,
+      pageNum,
     });
   }
 
   reset = () => {
-    this.getMovies(1);
+    this.getMovies(API_releaseDate, 1);
   };
 
   componentDidMount() {
-    this.getMovies(1);
+    this.getMovies(API_releaseDate, 1);
   }
 
   render() {
-    const myHomePage = (props) => <HomePage data={this.state.data} />;
+    const MyHomePage = ({ api = API_releaseDate }) => (
+      <HomePage
+        data={this.state.data}
+        pageNum={this.state.pageNum}
+        changePageNum={this.getMovies}
+        apiMethod={api}
+      />
+    );
+    const MyPopularPage = (props) => (
+      <div className="popular-page">
+        <h2 style={{ marginBottom: 0 }}>Most Popular</h2>
+        <MyHomePage api={API_popularity} />
+      </div>
+    );
     return (
       <Router>
         <div className="App">
-          <Header search={this.searchMovies} reset={this.reset} />
+          <Header
+            search={this.searchMovies}
+            reset={this.reset}
+            toPopular={() => this.getMovies(API_popularity, 1)}
+          />
           <Switch>
-            <Route exact path="/" component={myHomePage} />
+            <Route exact path="/" component={MyHomePage} />
+            <Route exact path="/popular" component={MyPopularPage} />
             <Route exact path="/about" component={AboutPage} />
-            <Route exact path="/contacts" component={ContactPage} />
           </Switch>
         </div>
       </Router>
