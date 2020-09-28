@@ -1,0 +1,73 @@
+.movie-card {
+  width: 23%;
+  background-color: #292847;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 4rem;
+  overflow: hidden;
+  &:hover {
+    .movie-card--body--poster {
+      transition: all 0.3s ease-in;
+      opacity: 0.2;
+      background-color: #000;
+    }
+    .movie-card--body--overview {
+      transform: translateY(0);
+    }
+  }
+
+  &--body {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    &--poster {
+      width: 100%;
+    }
+    &--overview {
+      max-height: 90%;
+      padding: 1rem;
+      margin-bottom: 7px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: auto;
+      color: #ebe5e2;
+      transform: translateY(105%);
+      transition: transform 0.3s ease-in;
+      &::-webkit-scrollbar {
+        width: 5px;
+        background-color: #1e1f33;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #737272;
+        border: 1px solid #000;
+      }
+    }
+  }
+  &--footer {
+    padding: 0.6rem 1rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &--title {
+    }
+    &--vote {
+      height: 2rem;
+      width: 3rem;
+      background-color: #1e1f33;
+      line-height: 2rem;
+      &__green {
+        color: rgb(0, 255, 0);
+      }
+      &__yellow {
+        color: yellow;
+      }
+      &__red {
+        color: salmon;
+      }
+    }
+  }
+}
