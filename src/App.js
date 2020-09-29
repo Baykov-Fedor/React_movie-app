@@ -64,7 +64,7 @@ class App extends React.Component {
     );
     const MyPopularPage = (props) => (
       <div className="popular-page">
-        <h2 style={{ marginBottom: 0 }}>Most Popular</h2>
+        <h1 style={{ marginBottom: 0 }}>Most Popular</h1>
         <MyHomePage api={API_popularity} />
       </div>
     );
