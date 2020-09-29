@@ -1,9 +1,11 @@
 import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import "./App.css";
+
 import Header from "./components/header/header.component";
 import HomePage from "./pages/homepage/homepage";
 import AboutPage from "./pages/aboutpage/aboutpage";
+
+import "./App.css";
 
 const API_releaseDate =
   "https://api.themoviedb.org/3/discover/movie?sort_by=primary_release_date.desc&vote_count.gte=4&api_key=04c35731a5ee918f014970082a0088b1&page=";
@@ -28,7 +30,6 @@ class App extends React.Component {
     let movieData = await fetch(SEARCHAPI + text)
       .then((res) => res.json())
       .then((res) => res.results);
-    console.log(movieData);
     this.setState({
       data: movieData,
     });
@@ -38,7 +39,6 @@ class App extends React.Component {
     let movieData = await fetch(url + pageNum)
       .then((res) => res.json())
       .then((res) => res.results);
-    console.log(movieData);
     this.setState({
       data: movieData,
       pageNum,
