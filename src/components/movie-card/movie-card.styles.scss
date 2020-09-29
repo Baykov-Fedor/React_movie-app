@@ -1,5 +1,5 @@
 .movie-card {
-  width: 23%;
+  width: 12.5rem;
   background-color: #292847;
   border-radius: 20px 20px 0 0;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
@@ -69,5 +69,8 @@
         color: salmon;
       }
     }
+  }
+  @media screen and (max-width: 1050px) {
+    width: 15rem;
   }
 }

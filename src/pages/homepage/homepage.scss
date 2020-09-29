@@ -1,12 +1,19 @@
 .main-page {
   padding: 2rem 20%;
+
   &--movies {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    @media screen and (max-width: 550px) {
+      justify-content: center;
+    }
+    &--controls {
+      display: flex;
+      justify-content: space-between;
+    }
   }
-  &--controls {
-    display: flex;
-    justify-content: space-between;
+  @media screen and (max-width: 1050px) {
+    padding: 2rem 5%;
   }
 }
